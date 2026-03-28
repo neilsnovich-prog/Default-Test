@@ -10,6 +10,30 @@ def get_primes(n):
     return [i for i, is_prime in enumerate(sieve) if is_prime]
 
 
+def plot_prime_count(n, primes):
+    import matplotlib.pyplot as plt
+
+    prime_set = set(primes)
+    x = list(range(n))
+    y = []
+    count = 0
+    for i in x:
+        if i in prime_set:
+            count += 1
+        y.append(count)
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(x, y, color="steelblue", linewidth=1.5)
+    plt.xlabel("Integer")
+    plt.ylabel("Number of Primes")
+    plt.title(f"Prime Counting Function π(x) for x < {n}")
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig("primes_chart.png", dpi=150)
+    plt.show()
+    print("Chart saved to primes_chart.png")
+
+
 def main():
     n = int(input("Enter a number: "))
     primes = get_primes(n)
@@ -18,6 +42,7 @@ def main():
         print(primes)
     else:
         print(f"No primes less than {n}.")
+    plot_prime_count(n, primes)
 
 
 if __name__ == "__main__":
