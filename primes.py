@@ -10,9 +10,10 @@ def get_primes(n):
     return [i for i, is_prime in enumerate(sieve) if is_prime]
 
 
-def plot_prime_count(n, primes):
+def plot_prime_count(n, primes, output_path="primes_chart.png"):
+    import matplotlib
+    matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    import os
 
     prime_set = set(primes)
     x = list(range(n))
@@ -31,14 +32,17 @@ def plot_prime_count(n, primes):
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
 
-    output_path = os.path.join(os.path.expanduser("~"), f"primes_chart_{n}.png")
     plt.savefig(output_path, dpi=150)
-    plt.show()
+    plt.close()
     print(f"Chart saved to: {output_path}")
 
 
 def main():
-    n = int(input("Enter a number: "))
+    import sys
+    if len(sys.argv) > 1:
+        n = int(sys.argv[1])
+    else:
+        n = int(input("Enter a number: "))
     primes = get_primes(n)
     if primes:
         print(f"Primes less than {n}:")
