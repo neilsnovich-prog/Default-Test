@@ -12,6 +12,7 @@ def get_primes(n):
 
 def plot_prime_count(n, primes):
     import matplotlib.pyplot as plt
+    import os
 
     prime_set = set(primes)
     x = list(range(n))
@@ -29,9 +30,11 @@ def plot_prime_count(n, primes):
     plt.title(f"Prime Counting Function π(x) for x < {n}")
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig("primes_chart.png", dpi=150)
+
+    output_path = os.path.join(os.path.expanduser("~"), f"primes_chart_{n}.png")
+    plt.savefig(output_path, dpi=150)
     plt.show()
-    print("Chart saved to primes_chart.png")
+    print(f"Chart saved to: {output_path}")
 
 
 def main():
