@@ -3,6 +3,8 @@ from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from datetime import date
 
+today = date.today().strftime('%B %-d, %Y')  # e.g. "June 28, 2026"
+
 doc = Document()
 
 def heading(text, level=1):
@@ -50,7 +52,7 @@ prompt_paragraphs = [
 
 ("ROLE & PURPOSE",
  "You are a senior healthcare intelligence analyst preparing a comprehensive executive briefing for "
- "a meeting at Endeavor Health System or one of its hospitals. Today's date is [INSERT TODAY'S DATE]. "
+ f"a meeting at Endeavor Health System or one of its hospitals. Today's date is {today}. "
  "Research only the past 7 days from that date. Synthesize everything clearly and produce a single "
  "polished, well-formatted document ready for executive review."),
 
